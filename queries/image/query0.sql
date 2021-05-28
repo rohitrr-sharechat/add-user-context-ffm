@@ -1,27 +1,22 @@
+CREATE TEMP FUNCTION preprocess(x string)
+AS (
+    replace(lower(x), "trending_", "")
+);
+
 CREATE TEMP FUNCTION getCollectiveReferrer(x string)
-RETURNS STRING
-LANGUAGE js
-AS """
-    if(x == null)
-        return "NULL_STR"
-    s = x.toLowerCase();
-    if(s.includes("trendingfeed") && s.includes("suggested"))
-        return "trendingfeed_suggested";
-    else if(s.includes("trendingfeed"))
-        return "trendingfeed";
-    else if(s.includes("videofeed") && s.includes("suggested"))
-        return "videofeed_suggested";
-    else if(s.includes("videofeed"))
-        return "videofeed";
-    else if(s.includes("tagfeed"))
-        return "tagfeed";
-    else if(s.includes("bucket"))
-        return "bucket";
-    else if(s.includes("profilepost"))
-        return "profilepost";
-    else
-        return "others";
-""";
+AS ((
+    select 
+    CASE
+    WHEN STARTS_WITH(x, "trendingfeed") and x like "%suggested%" THEN "trendingfeed_suggested"
+    WHEN STARTS_WITH(x, "trendingfeed") THEN "trendingfeed"
+    WHEN STARTS_WITH(x, "videofeed") and x like "%suggested%" THEN "videofeed_suggested"
+    WHEN STARTS_WITH(x, "videofeed") THEN "videofeed"
+    WHEN STARTS_WITH(x, "bucket") THEN "bucket"
+    WHEN STARTS_WITH(x, "profilepost") THEN "profilepost"
+    WHEN REGEXP_CONTAINS(x, "^(tagfeed|trendingtagfeed|freshtagfeed|videotagfeed)") THEN "tagfeed"
+    ELSE "others"
+    END AS grouped_referrer
+));
 
 WITH
 ugc as (
@@ -36,7 +31,7 @@ ugc as (
 ),
 
 view_data as (
-  select userId, postId, ANY_VALUE(ugc.tagId) as tagId, getCollectiveReferrer(ANY_VALUE(referrer)) as referrer
+  select userId, postId, ANY_VALUE(ugc.tagId) as tagId, getCollectiveReferrer(preprocess(ANY_VALUE(referrer))) as referrer
   from `maximal-furnace-783.sc_analytics.view_v3` inner join ugc using (postId)
   where
     time BETWEEN TIMESTAMP_SUB(TIMESTAMP('{end_time}'), interval {days} day) AND TIMESTAMP('{end_time}') AND
@@ -48,7 +43,7 @@ view_data as (
 eng as (
   select
     userId, postId, ANY_VALUE(ugc.tagId) as tagId,
-    getCollectiveReferrer(ANY_VALUE(referrer)) as referrer,
+    getCollectiveReferrer(preprocess(ANY_VALUE(referrer))) as referrer,
     LOGICAL_OR(name = 'Post Like') AS is_like,
     LOGICAL_OR(name = 'Post Shared-V2') AS is_share,
     LOGICAL_OR(name = 'Favourites') AS is_fav,
@@ -58,7 +53,8 @@ eng as (
 ),
 
 lpo as (
-  select CAST(distinct_id as string) as userId, ugc.postId, ANY_VALUE(ugc.tagId) as tagId, getCollectiveReferrer(ANY_VALUE(referrer)) as referrer, true as is_lpo
+  select CAST(distinct_id as string) as userId, ugc.postId, ANY_VALUE(ugc.tagId) as tagId,
+    getCollectiveReferrer(preprocess(ANY_VALUE(referrer))) as referrer, true as is_lpo
   from `maximal-furnace-783.sc_analytics.likers_popup_opened` x inner join ugc on CAST(x.postId as string) = ugc.postId
   where time BETWEEN TIMESTAMP_SUB(TIMESTAMP('{end_time}'), interval {days} day) AND TIMESTAMP('{end_time}')
   group by userId, postId
