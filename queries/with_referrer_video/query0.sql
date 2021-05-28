@@ -1,27 +1,22 @@
+CREATE TEMP FUNCTION preprocess(x string)
+AS (
+    replace(lower(x), "trending_", "")
+);
+
 CREATE TEMP FUNCTION getCollectiveReferrer(x string)
-RETURNS STRING
-LANGUAGE js
-AS """
-    if(x == null)
-        return "NULL_STR"
-    s = x.toLowerCase();
-    if(s.includes("trendingfeed") && s.includes("suggested"))
-        return "trendingfeed_suggested";
-    else if(s.includes("trendingfeed"))
-        return "trendingfeed";
-    else if(s.includes("videofeed") && s.includes("suggested"))
-        return "videofeed_suggested";
-    else if(s.includes("videofeed"))
-        return "videofeed";
-    else if(s.includes("tagfeed"))
-        return "tagfeed";
-    else if(s.includes("bucket"))
-        return "bucket";
-    else if(s.includes("profilepost"))
-        return "profilepost";
-    else
-        return "others";
-""";
+AS ((
+    select 
+    CASE
+    WHEN STARTS_WITH(x, "trendingfeed") and x like "%suggested%" THEN "trendingfeed_suggested"
+    WHEN STARTS_WITH(x, "trendingfeed") THEN "trendingfeed"
+    WHEN STARTS_WITH(x, "videofeed") and x like "%suggested%" THEN "videofeed_suggested"
+    WHEN STARTS_WITH(x, "videofeed") THEN "videofeed"
+    WHEN STARTS_WITH(x, "bucket") THEN "bucket"
+    WHEN STARTS_WITH(x, "profilepost") THEN "profilepost"
+    WHEN REGEXP_CONTAINS(x, "^(tagfeed|trendingtagfeed|freshtagfeed|videotagfeed)") THEN "tagfeed"
+    ELSE "others"
+    END AS grouped_referrer
+));
 
 
 
@@ -60,7 +55,7 @@ vid_dur as (
 vp_succ as (
   select 
     userId, postId, ANY_VALUE(vid_dur.tagId) as tagId,
-    getCollectiveReferrer(ANY_VALUE(vp_temp.referrer)) as referrer,
+    getCollectiveReferrer(preprocess(ANY_VALUE(vp_temp.referrer))) as referrer,
     LOGICAL_OR(repeatCount > 1 OR (repeatCount > 0 AND vid_dur.duration*(percentageFloat/100) > 1)) as is_vp_succ,
     sum(if(vid_dur.duration between 5 and 19 and vid_dur.duration*(repeatCount+percentageFloat/100) > (((vid_dur.duration - 5) * 3.7189182474712084) / 15) + 10.95394866571609, 1,
           if(vid_dur.duration between 20 and 34 and vid_dur.duration*(repeatCount+percentageFloat/100) > (((vid_dur.duration - 20) * 7.005242627404698) / 15) + 20.989031673191437, 1,
