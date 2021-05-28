@@ -1,6 +1,6 @@
 WITH
 full_data as (
-  select userId, postId, tagId, if({rating_def}, 1, 0) as score
+  select userId, postId, tagId, referrer, if({rating_def}, 1, 0) as score
   from {q0table}
 ),
 
