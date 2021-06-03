@@ -55,7 +55,7 @@ vid_dur as (
 vp_succ as (
   select 
     userId, postId, ANY_VALUE(vid_dur.tagId) as tagId,
-    getCollectiveReferrer(preprocess(ANY_VALUE(vp_temp.referrer))) as referrer,
+    getCollectiveReferrer(preprocess(ANY_VALUE(referrer))) as referrer,
     LOGICAL_OR(repeatCount > 1 OR (repeatCount > 0 AND vid_dur.duration*(percentageFloat/100) > 1)) as is_vp_succ,
     sum(if(vid_dur.duration between 5 and 19 and vid_dur.duration*(repeatCount+percentageFloat/100) > (((vid_dur.duration - 5) * 3.7189182474712084) / 15) + 10.95394866571609, 1,
           if(vid_dur.duration between 20 and 34 and vid_dur.duration*(repeatCount+percentageFloat/100) > (((vid_dur.duration - 20) * 7.005242627404698) / 15) + 20.989031673191437, 1,
