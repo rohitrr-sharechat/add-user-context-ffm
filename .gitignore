@@ -2,3 +2,5 @@
 train_test_data_models/
 xlearn_train
 temp/
+logs/
+

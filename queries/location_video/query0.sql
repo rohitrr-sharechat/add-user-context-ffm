@@ -17,7 +17,7 @@ vp_temp as (
     IFNULL(repeatCount, 0) as repeatCount, IFNULL(percentageFloat, 0) as percentageFloat
   from `maximal-furnace-783.sc_analytics.video_play` vp inner join ugc on CAST(vp.postId as STRING) = ugc.postId
   where 
-    time BETWEEN TIMESTAMP_SUB(TIMESTAMP('{end_time}'), interval '{end_time}' day) AND TIMESTAMP('{end_time}') AND
+    time BETWEEN TIMESTAMP_SUB(TIMESTAMP('{end_time}'), interval {days} day) AND TIMESTAMP('{end_time}') AND
     (percentageFloat IS NULL OR percentageFloat BETWEEN 0 AND 100) AND
     (duration IS NULL OR duration BETWEEN 0 AND 1e5) AND
     (repeatCount IS NULL OR repeatCount BETWEEN 0 AND 1e5)
@@ -59,7 +59,7 @@ eng as (
     LOGICAL_OR(name = 'Post Shared-V2') AS is_share,
     LOGICAL_OR(name = 'Favourites') AS is_fav,
   from `maximal-furnace-783.sc_analytics.eng_view` inner join ugc using (postId)
-  where time BETWEEN TIMESTAMP_SUB(TIMESTAMP('{end_time}'), interval '{end_time}' day) AND TIMESTAMP('{end_time}')
+  where time BETWEEN TIMESTAMP_SUB(TIMESTAMP('{end_time}'), interval {days} day) AND TIMESTAMP('{end_time}')
   group by userId, postId
 ),
 
@@ -76,8 +76,8 @@ user_info as (
     on user.phoneModel = phone.mobile_model_name
 )
 
-select * except (hour_of_day, day_of_week, userCity, userState, averagePhonePrice), concat(lower(IFNULL(userCity, "noCityLocation")), "_", lower(IFNULL(userState, "noStateLocation"))) as location_feature, 
-          concat(cast(RANGE_BUCKET(hour_of_day, [7, 9, 11, 14, 16, 19, 21]) as STRING), "_", cast(day_of_week as STRING)) as time_feature,
-          cast(IFNULL(RANGE_BUCKET(averagePhonePrice, [7499, 8999, 10999 ,14000]), -1) as STRING) as price_feature
+select * except (hour_of_day, day_of_week, userCity, userState, averagePhonePrice), concat(lower(IFNULL(userCity, "noCityLocation")), "_", lower(IFNULL(userState, "noStateLocation"))) as locationBucket, 
+          concat(cast(RANGE_BUCKET(hour_of_day, [7, 9, 11, 14, 16, 19, 21]) as STRING), "_", cast(day_of_week as STRING)) as actionTimeBucket,
+          cast(IFNULL(RANGE_BUCKET(averagePhonePrice, [7499, 8999, 10999 ,14000]), -1) as STRING) as priceBucket
 from vp_succ left join eng using (userId, postId, tagId)
 left join user_info using (userId);

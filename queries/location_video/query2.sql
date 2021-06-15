@@ -14,8 +14,8 @@ users as (
 --   from {q1table}
 -- ),
 
-referrers as (
-  select distinct CONCAT('3_referrer_', referrer) feature_name
+locationBuckets as (
+  select distinct CONCAT('3_locationBucket_', locationBucket) feature_name
   from {q1table}
 ),
 
@@ -24,7 +24,7 @@ all_features as (
   union all
   (select * from posts)
   union all
-  (select * from referrers)
+  (select * from locationBuckets)
 )
 
 select feature_name, ROW_NUMBER() OVER (ORDER BY feature_name) as mapping
