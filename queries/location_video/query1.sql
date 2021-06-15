@@ -1,7 +1,7 @@
 WITH
 full_data as (
   select userId, postId, tagId, locationBucket, if({rating_def}, 1, 0) as score
-  from {q0table}
+  from `{q0table}`
 ),
 
 posts as (
