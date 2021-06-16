@@ -72,12 +72,14 @@ user_info as (
                                                 end
                                                 as averagePhonePrice
     from `maximal-furnace-783.sc_analytics.user` user
-    join `maximal-furnace-783.moj_analytics.phone_price_updated` phone
-    on user.phoneModel = phone.mobile_model_name
+    left join (select mobile_model_name, ANY_VALUE(price_1) as price_1, ANY_VALUE(price_2) as price_2
+    from `maximal-furnace-783.moj_analytics.phone_price_updated` 
+    group by mobile_model_name) phone
+    on lower(replace(user.phoneModel, " ", "")) = lower(replace(phone.mobile_model_name, " ", ""))
 )
 
 select * except (hour_of_day, day_of_week, userCity, userState, averagePhonePrice), concat(lower(IFNULL(userCity, "noCityLocation")), "_", lower(IFNULL(userState, "noStateLocation"))) as locationBucket, 
           concat(cast(RANGE_BUCKET(hour_of_day, [7, 9, 11, 14, 16, 19, 21]) as STRING), "_", cast(day_of_week as STRING)) as actionTimeBucket,
-          cast(IFNULL(RANGE_BUCKET(averagePhonePrice, [7499, 8999, 10999 ,14000]), -1) as STRING) as priceBucket
+          cast(IFNULL(RANGE_BUCKET(averagePhonePrice, [7649,9499,11245,14295]), -1) as STRING) as priceBucket
 from vp_succ left join eng using (userId, postId, tagId)
 left join user_info using (userId);

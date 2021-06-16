@@ -19,7 +19,7 @@ users as (
   having count(*) >= 10 and sum(score) >= 2
 ),
 
-locationBuckets as (
+locations as (
   SELECT locationBucket
   FROM full_data
   where postId in (select * from posts) and userId in (select * from users)
@@ -31,4 +31,4 @@ locationBuckets as (
 select *
 from full_data
 where postId in (select * from posts) and userId in (select * from users)
-and locationBucket in (select * from locationBuckets)
+and locationBucket in (select * from locations)
