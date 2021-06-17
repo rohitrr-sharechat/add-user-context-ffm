@@ -1,2 +1,0 @@
-Rating Definition,Language,AUC score - Overall,AUC score - User Level,NDCG@5 Score - User Level,NDCG@10 Score - User Level,MAPK@5 score - User Level,MAPK@10 score - User Level,User Context,Type
-is_like,Hindi,0.9157517498779858,0.6888179244692036,0.46825603128273835,0.4555000087405628,0.36258100000001925,0.31735349007937036,location,video
