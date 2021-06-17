@@ -79,7 +79,7 @@ user_info as (
 )
 
 select * except (hour_of_day, day_of_week, userCity, userState, averagePhonePrice), concat(lower(IFNULL(userCity, "noCityLocation")), "_", lower(IFNULL(userState, "noStateLocation"))) as locationBucket, 
-          concat(cast(RANGE_BUCKET(hour_of_day, [7, 9, 11, 14, 16, 19, 21]) as STRING), "_", cast(day_of_week as STRING)) as actionTimeBucket,
+          concat(cast(RANGE_BUCKET(hour_of_day, [6,9,11,14,16,20,22]) as STRING), "_", cast(day_of_week as STRING)) as actionTimeBucket,
           cast(IFNULL(RANGE_BUCKET(averagePhonePrice, [7649,9499,11245,14295]), -1) as STRING) as priceBucket
 from vp_succ left join eng using (userId, postId, tagId)
 left join user_info using (userId);
