@@ -1,0 +1,121 @@
+Rating Def,Language,location,Similar location,Cosine Similarity
+is_vp_succ2,Hindi,ghazipur_punjab,ghazipur_punjab,1.0
+is_vp_succ2,Hindi,ghazipur_punjab,kolasib_mizoram,0.9595278904703449
+is_vp_succ2,Hindi,ghazipur_punjab,dhawalagiri_western development region,0.9541212861780702
+is_vp_succ2,Hindi,ghazipur_punjab,fatehpur_riyadh province,0.9540702589550398
+is_vp_succ2,Hindi,ghazipur_punjab,vsevolozhsky district_ленинградская,0.9513806842357347
+is_vp_succ2,Hindi,ghazipur_punjab,faizabad_ajman,0.947348816120866
+is_vp_succ2,Hindi,ghazipur_punjab,south east delhi_ajman,0.9438417940008879
+is_vp_succ2,Hindi,ghazipur_punjab,cachar_manipur,0.9431424976488985
+is_vp_succ2,Hindi,ghazipur_punjab,new delhi_fujairah,0.9411408978546091
+is_vp_succ2,Hindi,ghazipur_punjab,deoria_al ahmadi governorate,0.9409484804369835
+is_vp_succ2,Hindi,mumbai_uttar pradesh,mumbai_uttar pradesh,1.0
+is_vp_succ2,Hindi,mumbai_uttar pradesh,thakurgaon district_west bengal,0.9190785510676374
+is_vp_succ2,Hindi,mumbai_uttar pradesh,tarif_northern borders province,0.892185857586516
+is_vp_succ2,Hindi,mumbai_uttar pradesh,south west delhi_mexico city,0.8891444978503652
+is_vp_succ2,Hindi,mumbai_uttar pradesh,gonda_telangana,0.8807702589519022
+is_vp_succ2,Hindi,mumbai_uttar pradesh,godda_mexico city,0.877900350164476
+is_vp_succ2,Hindi,mumbai_uttar pradesh,muzaffarpur_arunachal pradesh,0.8680224047428894
+is_vp_succ2,Hindi,mumbai_uttar pradesh,maharajganj_mexico city,0.8668978779532482
+is_vp_succ2,Hindi,mumbai_uttar pradesh,san antonio_río negro,0.8571462817843385
+is_vp_succ2,Hindi,mumbai_uttar pradesh,dera ghazi khan_punjab,0.8473050573730186
+is_vp_succ2,Hindi,ludhiana_punjab,ludhiana_punjab,0.9999999999999999
+is_vp_succ2,Hindi,ludhiana_punjab,sahibzada ajit singh nagar_punjab,0.9892313229010651
+is_vp_succ2,Hindi,ludhiana_punjab,chandigarh_chandigarh,0.9876577581525794
+is_vp_succ2,Hindi,ludhiana_punjab,fatehgarh sahib_punjab,0.9868229250646282
+is_vp_succ2,Hindi,ludhiana_punjab,sahibzada ajit singh nagar_haryana,0.9847595566921875
+is_vp_succ2,Hindi,ludhiana_punjab,barnala_punjab,0.9801729028566557
+is_vp_succ2,Hindi,ludhiana_punjab,panchkula_haryana,0.9769144938362965
+is_vp_succ2,Hindi,ludhiana_punjab,faridkot_punjab,0.9752549512391804
+is_vp_succ2,Hindi,ludhiana_punjab,sahibzada ajit singh nagar_chandigarh,0.9741521345334208
+is_vp_succ2,Hindi,ludhiana_punjab,panchkula_punjab,0.9739110280509796
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,bangalore urban_uttar pradesh,1.0
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,unnao_mexico city,0.9095876998173364
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,kurigram district_rangpur division,0.9086535721283288
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,churu_fujairah,0.9064177363583616
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,amphoe mueang nonthaburi_chang wat nonthaburi,0.891663487438946
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,ranchi_mexico city,0.8784969618939298
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,maharajganj_al jahra governorate,0.8775460152953611
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,basti_mexico city,0.877129738129401
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,bih_bihar,0.8764366638513585
+is_vp_succ2,Hindi,bangalore urban_uttar pradesh,darjeeling_bihar,0.8764259870302503
+is_vp_succ2,Hindi,vadodara_uttar pradesh,vadodara_uttar pradesh,0.9999999999999997
+is_vp_succ2,Hindi,vadodara_uttar pradesh,kamrup metropolitan_meghalaya,0.9038793932139055
+is_vp_succ2,Hindi,vadodara_uttar pradesh,krasnoyarsk_krasnoyarskiy kray,0.8763633962515748
+is_vp_succ2,Hindi,vadodara_uttar pradesh,meherpur district_khulna division,0.8700605408553739
+is_vp_succ2,Hindi,vadodara_uttar pradesh,al nuayriyah_eastern province,0.8638527305400538
+is_vp_succ2,Hindi,vadodara_uttar pradesh,shaheed bhagat singh nagar_ras al khaimah,0.8621806829232643
+is_vp_succ2,Hindi,vadodara_uttar pradesh,city of liverpool_new south wales,0.8609174065065276
+is_vp_succ2,Hindi,vadodara_uttar pradesh,city of wanneroo_western australia,0.8580717059080469
+is_vp_succ2,Hindi,vadodara_uttar pradesh,baku_uttar pradesh,0.8553282899668476
+is_vp_succ2,Hindi,vadodara_uttar pradesh,nocitylocation_sétif province,0.8523918481897095
+is_vp_succ2,Hindi,pathankot_uttar pradesh,pathankot_uttar pradesh,1.0000000000000002
+is_vp_succ2,Hindi,pathankot_uttar pradesh,eastern region_fujairah,0.9557934590916464
+is_vp_succ2,Hindi,pathankot_uttar pradesh,tapi_telangana,0.9517508043164725
+is_vp_succ2,Hindi,pathankot_uttar pradesh,bang phli_bangkok,0.948538436719755
+is_vp_succ2,Hindi,pathankot_uttar pradesh,fatehpur_al qassim,0.9454408068324319
+is_vp_succ2,Hindi,pathankot_uttar pradesh,patiala_al farwaniyah governorate,0.9426112645132028
+is_vp_succ2,Hindi,pathankot_uttar pradesh,balqarn_aseer province,0.9400696947103206
+is_vp_succ2,Hindi,pathankot_uttar pradesh,santa marta_magdalena,0.9395515362593433
+is_vp_succ2,Hindi,pathankot_uttar pradesh,manzanares_caldas,0.9367950372792256
+is_vp_succ2,Hindi,pathankot_uttar pradesh,city of cockburn_western australia,0.9362300984828896
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,rajgarh_madhya pradesh,1.0
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,sehore_madhya pradesh,0.9920294863122113
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,jhalawar_madhya pradesh,0.9919534929779906
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,shajapur_madhya pradesh,0.9891195193503877
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,agar_madhya pradesh,0.9872175677422379
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,jhalawar_rajasthan,0.983802151096649
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,mandsaur_rajasthan,0.9801454754755878
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,mandsaur_madhya pradesh,0.975196987276159
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,dewas_madhya pradesh,0.9657734671999394
+is_vp_succ2,Hindi,rajgarh_madhya pradesh,neemuch_madhya pradesh,0.9649433589187311
+is_vp_succ2,Hindi,betul_madhya pradesh,betul_madhya pradesh,0.9999999999999998
+is_vp_succ2,Hindi,betul_madhya pradesh,chhindwara_madhya pradesh,0.9977946177992502
+is_vp_succ2,Hindi,betul_madhya pradesh,amravati_madhya pradesh,0.9809297491300819
+is_vp_succ2,Hindi,betul_madhya pradesh,seoni_madhya pradesh,0.975805705592457
+is_vp_succ2,Hindi,betul_madhya pradesh,nagpur_madhya pradesh,0.9755894099391159
+is_vp_succ2,Hindi,betul_madhya pradesh,balaghat_madhya pradesh,0.9677221469449686
+is_vp_succ2,Hindi,betul_madhya pradesh,mandla_madhya pradesh,0.9490008918860845
+is_vp_succ2,Hindi,betul_madhya pradesh,ratlam_mexico city,0.9478107586648707
+is_vp_succ2,Hindi,betul_madhya pradesh,khandwa_madhya pradesh,0.9464188975730633
+is_vp_succ2,Hindi,betul_madhya pradesh,dahod_madhya pradesh,0.9453035242117185
+is_vp_succ2,Hindi,mahendragarh_haryana,mahendragarh_haryana,1.0000000000000002
+is_vp_succ2,Hindi,mahendragarh_haryana,jhunjhunu_haryana,0.9960971039409824
+is_vp_succ2,Hindi,mahendragarh_haryana,rewari_haryana,0.9957192259931134
+is_vp_succ2,Hindi,mahendragarh_haryana,bhiwani_haryana,0.9903033463248119
+is_vp_succ2,Hindi,mahendragarh_haryana,rewari_rajasthan,0.9892583396898367
+is_vp_succ2,Hindi,mahendragarh_haryana,mahendragarh_rajasthan,0.9781159814327872
+is_vp_succ2,Hindi,mahendragarh_haryana,yamuna nagar_uttar pradesh,0.9755462278885942
+is_vp_succ2,Hindi,mahendragarh_haryana,jhajjar_haryana,0.975309512906902
+is_vp_succ2,Hindi,mahendragarh_haryana,sirsa_rajasthan,0.9742167599187147
+is_vp_succ2,Hindi,mahendragarh_haryana,hanumangarh_rajasthan,0.9741194683800202
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,chhatarpur_madhya pradesh,0.9999999999999999
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,tikamgarh_madhya pradesh,0.9933844115309657
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,tikamgarh_uttar pradesh,0.9919112319244743
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,tahsheel_madhya pradesh,0.988335842351568
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,lalitpur_madhya pradesh,0.9882522957312012
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,jhansi_uttar pradesh,0.9873399875213377
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,jhansi_madhya pradesh,0.9871556589358638
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,lalitpur_uttar pradesh,0.9852846260447837
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,panna_madhya pradesh,0.9847679042539371
+is_vp_succ2,Hindi,chhatarpur_madhya pradesh,mahoba_uttar pradesh,0.9833205694429057
+is_vp_succ2,Hindi,panna_uttar pradesh,panna_uttar pradesh,0.9999999999999999
+is_vp_succ2,Hindi,panna_uttar pradesh,chitrakoot_madhya pradesh,0.9892280861365824
+is_vp_succ2,Hindi,panna_uttar pradesh,hamirpur_uttar pradesh,0.9793074994409608
+is_vp_succ2,Hindi,panna_uttar pradesh,banda_uttar pradesh,0.9760613626509249
+is_vp_succ2,Hindi,panna_uttar pradesh,satna_uttar pradesh,0.9734396776656946
+is_vp_succ2,Hindi,panna_uttar pradesh,rewa_madhya pradesh,0.9727419191987864
+is_vp_succ2,Hindi,panna_uttar pradesh,chitrakoot_uttar pradesh,0.9709811581070846
+is_vp_succ2,Hindi,panna_uttar pradesh,prayagraj_madhya pradesh,0.969319515895264
+is_vp_succ2,Hindi,panna_uttar pradesh,kaushambi_uttar pradesh,0.9657882414346769
+is_vp_succ2,Hindi,panna_uttar pradesh,jhansi_madhya pradesh,0.9653606983799796
+is_vp_succ2,Hindi,ugrali_rajasthan,ugrali_rajasthan,0.9999999999999997
+is_vp_succ2,Hindi,ugrali_rajasthan,jhunjhunu_abu dhabi,0.9711256869246188
+is_vp_succ2,Hindi,ugrali_rajasthan,tehri garhwal_sharjah,0.9576861432832877
+is_vp_succ2,Hindi,ugrali_rajasthan,sikar_dubai,0.9517648327227747
+is_vp_succ2,Hindi,ugrali_rajasthan,जयपुर_राजस्थान,0.9354558474744377
+is_vp_succ2,Hindi,ugrali_rajasthan,patan_al batinah north governorate,0.9351397029575433
+is_vp_succ2,Hindi,ugrali_rajasthan,bishkek_chuy province,0.9337472150687967
+is_vp_succ2,Hindi,ugrali_rajasthan,ahmedabad_al jahra governorate,0.9315586879661406
+is_vp_succ2,Hindi,ugrali_rajasthan,bahçelievler_i̇stanbul,0.9283114023906959
+is_vp_succ2,Hindi,ugrali_rajasthan,churu_rajasthan,0.9280665102036422
