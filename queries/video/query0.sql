@@ -75,7 +75,7 @@ eng as (
 ),
 
 user_info as (
-    select id as userId, userCity, userState, CASE
+    select id as userId, userState, userCountry, CASE
                                                 when price_1 is not null and price_2 is not null then CAST((price_1+price_2)/2 as INT64) 
                                                 when price_1 is not null then price_1
                                                 when price_2 is not null then price_2
@@ -89,8 +89,8 @@ user_info as (
     on lower(replace(user.phoneModel, " ", "")) = lower(replace(phone.mobile_model_name, " ", ""))
 )
 
-select * except (hour_of_day, day_of_week, userCity, userState, averagePhonePrice), 
-          getLocationBucket(userCity, userState) as locationBucket, 
+select * except (hour_of_day, day_of_week, userState, userCountry, averagePhonePrice), 
+          getLocationBucket(userState, userCountry) as locationBucket, 
           concat(cast(RANGE_BUCKET(hour_of_day, [6,9,11,14,16,20,22]) as STRING), "_", cast(day_of_week as STRING)) as actionTimeBucket,
           cast(IFNULL(RANGE_BUCKET(averagePhonePrice, [7649,9499,11245,14295]), -1) as STRING) as priceBucket
 from vp_succ left join eng using (userId, postId, tagId)
