@@ -1,21 +1,3 @@
-CREATE TEMP FUNCTION getLocationBucket(currentUserCity STRING, currentUserState STRING, currentUserCountry STRING)
-AS ((SELECT
-        CASE
-        WHEN EXISTS (select * from `maximal-furnace-783.rohitrr.hindi_user_city_state_country_locations_ffm_filter`
-                    where (userCity=IFNULL(currentUserCity, "nocitylocation") 
-                    and userState=IFNULL(currentUserState, "nostatelocation") 
-                    and userCountry=IFNULL(currentUserCountry, "nocountrylocation")))
-             THEN concat(IFNULL(currentUserCity, "nocitylocation"),
-                         '_', IFNULL(currentUserState, "nostatelocation"),
-                        '_', IFNULL(currentUserCountry, "nocountrylocation"))
-        WHEN EXISTS (select * from `maximal-furnace-783.rohitrr.hindi_user_state_country_locations_ffm_filter`
-                    where (userState=IFNULL(currentUserState, "nostatelocation") 
-                    and userCountry=IFNULL(currentUserCountry, "nocountrylocation")))
-             THEN concat("skipcitylocation",'_',IFNULL(currentUserState, "nostatelocation"),
-                        '_', IFNULL(currentUserCountry, "nocountrylocation"))
-        ELSE "others"
-    END));
-
 WITH
 ugc as (
   SELECT
