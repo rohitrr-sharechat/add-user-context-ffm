@@ -1,10 +1,17 @@
-CREATE TEMP FUNCTION getLocationBucket(currentUserState STRING, currentUserCountry STRING)
+CREATE TEMP FUNCTION getLocationBucket(currentUserCity STRING, currentUserState STRING, currentUserCountry STRING)
 AS ((SELECT
         CASE
-        WHEN EXISTS (select * from `maximal-furnace-783.rohitrr.hindi_user_locations_ffm_filter`
+        WHEN EXISTS (select * from `maximal-furnace-783.rohitrr.hindi_user_city_state_country_locations_ffm_filter`
+                    where (userCity=IFNULL(currentUserCity, "nocitylocation") 
+                    and userState=IFNULL(currentUserState, "nostatelocation") 
+                    and userCountry=IFNULL(currentUserCountry, "nocountrylocation")))
+             THEN concat(IFNULL(currentUserCity, "nocitylocation"),
+                         '_', IFNULL(currentUserState, "nostatelocation"),
+                        '_', IFNULL(currentUserCountry, "nocountrylocation"))
+        WHEN EXISTS (select * from `maximal-furnace-783.rohitrr.hindi_user_state_country_locations_ffm_filter`
                     where (userState=IFNULL(currentUserState, "nostatelocation") 
                     and userCountry=IFNULL(currentUserCountry, "nocountrylocation")))
-             THEN concat(IFNULL(currentUserState, "nostatelocation"),
+             THEN concat("skipcitylocation",'_',IFNULL(currentUserState, "nostatelocation"),
                         '_', IFNULL(currentUserCountry, "nocountrylocation"))
         ELSE "others"
     END));
@@ -75,7 +82,7 @@ eng as (
 ),
 
 user_info as (
-    select id as userId, userState, userCountry, CASE
+    select id as userId, coalesce(csc.locationBucket, sc.locationBucket, "others") as userLocationBucket, CASE
                                                 when price_1 is not null and price_2 is not null then CAST((price_1+price_2)/2 as INT64) 
                                                 when price_1 is not null then price_1
                                                 when price_2 is not null then price_2
@@ -84,13 +91,20 @@ user_info as (
                                                 as averagePhonePrice
     from `maximal-furnace-783.sc_analytics.user` user
     left join (select mobile_model_name, ANY_VALUE(price_1) as price_1, ANY_VALUE(price_2) as price_2
-    from `maximal-furnace-783.moj_analytics.phone_price_updated` 
+    from `maximal-furnace-783.moj_analytics.phone_price_updated`
     group by mobile_model_name) phone
     on lower(replace(user.phoneModel, " ", "")) = lower(replace(phone.mobile_model_name, " ", ""))
+    left join `maximal-furnace-783.rohitrr.hindi_user_city_state_country_locations_ffm_bucket` csc
+    on (csc.userState = coalesce(user.userState, "nostate") 
+        and csc.userCountry = coalesce(user.userCountry, "nocountry"))
+    left join `maximal-furnace-783.rohitrr.hindi_user_city_state_country_locations_ffm_bucket` sc
+    on (sc.userCity = coalesce(user.userCity, "nocity") 
+        and sc.userState = coalesce(user.userState, "nostate") 
+        and sc.userCountry = coalesce(user.userCountry, "nocountry"))    
 )
 
-select * except (hour_of_day, day_of_week, userState, userCountry, averagePhonePrice), 
-          getLocationBucket(userState, userCountry) as locationBucket, 
+select * except (hour_of_day, day_of_week, averagePhonePrice), 
+          userLocationBucket as locationBucket, 
           concat(cast(RANGE_BUCKET(hour_of_day, [6,9,11,14,16,20,22]) as STRING), "_", cast(day_of_week as STRING)) as actionTimeBucket,
           cast(IFNULL(RANGE_BUCKET(averagePhonePrice, [7649,9499,11245,14295]), -1) as STRING) as priceBucket
 from vp_succ left join eng using (userId, postId, tagId)
