@@ -2,4 +2,4 @@
 train_test_data_models/
 temp/
 logs/
-
+*.pyc

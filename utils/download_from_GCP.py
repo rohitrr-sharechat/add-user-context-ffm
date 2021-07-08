@@ -38,7 +38,7 @@ def download_large_table_to_gcs(table_path, bucket_name,
     dataset_ref = bigquery.DatasetReference(project, dataset_id)
     table_ref = dataset_ref.table(table_id)
     
-    job_config = bigquery.ExtractJobConfig(field_delimiter="\t")
+    job_config = bigquery.ExtractJobConfig(field_delimiter=",")
     bq_client = bigquery.Client()
     extract_job = bq_client.extract_table(
         table_ref,
