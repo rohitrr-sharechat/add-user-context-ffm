@@ -77,12 +77,12 @@ user_info as (
     group by mobile_model_name) phone
     on lower(replace(user.phoneModel, " ", "")) = lower(replace(phone.mobile_model_name, " ", ""))
     left join `maximal-furnace-783.rohitrr.hindi_user_city_state_country_locations_ffm_bucket` csc
-    on (csc.userState = coalesce(user.userState, "nostate") 
+    on (csc.userCity = coalesce(user.userCity, "nocity") 
+        and csc.userState = coalesce(user.userState, "nostate") 
         and csc.userCountry = coalesce(user.userCountry, "nocountry"))
-    left join `maximal-furnace-783.rohitrr.hindi_user_city_state_country_locations_ffm_bucket` sc
-    on (sc.userCity = coalesce(user.userCity, "nocity") 
-        and sc.userState = coalesce(user.userState, "nostate") 
-        and sc.userCountry = coalesce(user.userCountry, "nocountry"))    
+    left join `maximal-furnace-783.rohitrr.hindi_user_state_country_locations_ffm_bucket` sc
+    on (sc.userState = coalesce(user.userState, "nostate") 
+        and sc.userCountry = coalesce(user.userCountry, "nocountry"))  
 )
 
 select * except (hour_of_day, day_of_week, averagePhonePrice), 
